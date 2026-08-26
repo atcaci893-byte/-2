@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Реєстрація', href: '/registration/' }];
+const steps = [
+  ['Перейдіть до реєстрації', 'Використовуйте перевірений домен і переконайтеся, що з’єднання захищене.'],
+  ['Заповніть форму', 'Вводьте власні актуальні дані без скорочень і випадкових помилок.'],
+  ['Підтвердьте дані', 'Перевірте телефон або email через код, якщо сервіс цього попросить.'],
+  ['Створіть акаунт', 'Використайте унікальний пароль і не передавайте його іншим.'],
+  ['Пройдіть можливу KYC', 'Підготуйте документи лише після запиту в захищеному інтерфейсі.'],
+  ['Увійдіть після реєстрації', 'Перевірте профіль, ліміти та налаштування безпеки.'],
+];
+---
+<BaseLayout title="Реєстрація Pokerbet — покрокова інструкція" description="Як створити акаунт Pokerbet: форма, підтвердження даних, безпечний пароль, можлива верифікація та перший вхід." breadcrumbs={crumbs}>
+  <Hero eyebrow="Реєстрація" title="Шість кроків до налаштованого акаунта" description="Послідовність допомагає не пропустити підтвердження даних, перевірку домену та базові налаштування безпеки." secondaryLabel="Навіщо потрібна KYC" secondaryHref="/verification/" />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Порядок дій</p><h2>Від форми до першого входу</h2></div><ol class="steps">{steps.map(([title, text]) => <li><strong>{title}</strong><p>{text}</p></li>)}</ol></section>
+  <section class="section"><div class="section-heading"><p class="eyebrow">Місця для знімків</p><h2>Скріншоти інтерфейсу</h2><p>Редактор зможе замінити ці блоки після отримання актуальних зображень.</p></div><div class="screenshot-grid"><div class="screenshot-placeholder">Скріншот 01 · форма реєстрації</div><div class="screenshot-placeholder">Скріншот 02 · підтвердження даних</div></div></section>
+  <CTA title="Після створення акаунта" text="Перевірте вимоги до верифікації та документи, які можуть знадобитися." label="Перейти до KYC-гіда" href="/verification/" />
+</BaseLayout>
+

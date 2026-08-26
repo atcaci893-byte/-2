@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  note?: string;
+  variant?: 'default' | 'home' | 'bonus' | 'quiet';
+}
+import PromoCard from './PromoCard.astro';
+const { eyebrow, title, description, primaryLabel, primaryHref, secondaryLabel, secondaryHref, note, variant = 'default' } = Astro.props;
+---
+
+<section class="hero" data-variant={variant}>
+  <div class="hero-main">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="hero-description">{description}</p>
+    {(primaryLabel || secondaryLabel) && (
+      <div class="hero-actions">
+        {primaryLabel && primaryHref && <a class="button" href={primaryHref}>{primaryLabel}</a>}
+        {secondaryLabel && secondaryHref && <a class="text-link" href={secondaryHref}>{secondaryLabel} <span aria-hidden="true">→</span></a>}
+      </div>
+    )}
+    {variant === 'home' && <div class="hero-trust"><span>21+</span><span>Незалежний гід</span><span>Дані перевіряються</span></div>}
+  </div>
+  {variant === 'home' || variant === 'bonus' ? <PromoCard compact={variant === 'bonus'} /> : <aside class="hero-note" aria-label="Важлива примітка"><span class="note-index">INFO / 01</span><strong>Перевіряйте актуальність</strong><p>{note ?? 'Умови, ліміти й доступні функції можуть змінюватися. Звіряйте дані перед дією.'}</p></aside>}
+</section>

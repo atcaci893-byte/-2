@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Безпека', href: '/security/' }];
+const topics = [
+  ['Пароль', 'Використовуйте унікальну довгу фразу та не повторюйте пароль з пошти або банкінгу.'],
+  ['Двофакторний захист', 'Увімкніть 2FA, якщо ця функція доступна в налаштуваннях акаунта.'],
+  ['Платежі', 'Звіряйте суму, метод і домен перед підтвердженням операції.'],
+  ['KYC / AML', 'Передавайте документи лише після запиту через захищений інтерфейс.'],
+  ['Фішинг і дзеркала', 'Не переходьте за випадковими посиланнями та не встановлюйте файли зі сторонніх джерел.'],
+  ['Перевірка домену', 'Перевіряйте написання адреси, HTTPS і відсутність підозрілих піддоменів.'],
+];
+---
+<BaseLayout title="Безпека Pokerbet — захист акаунта, платежів і даних" description="Безпечний вхід у Pokerbet: пароль, можлива 2FA, KYC, платежі, фішинг, дзеркала, перевірка домену та персональні дані." breadcrumbs={crumbs}>
+  <Hero eyebrow="Безпека" title="Спочатку домен, потім пароль" description="Більшість базових ризиків можна зменшити перевіркою адреси, унікальним паролем і відмовою від сторонніх APK або форм для документів." />
+  <section class="security-center" aria-label="Центр безпеки"><div><span>Безпечний вхід</span><strong>Перевірте домен</strong><i>→</i></div><div><span>Пароль</span><strong>Унікальна фраза</strong><i>→</i></div><div><span>KYC</span><strong>За окремим запитом</strong><i>i</i></div><div><span>Фішинг</span><strong>Уникайте сторонніх посилань</strong><i>!</i></div></section>
+  <section class="section"><div class="section-heading"><p class="eyebrow">Захист</p><h2>Шість точок перевірки</h2></div><div class="card-grid">{topics.map(([title, text], index) => <article class="info-card"><span class="number">0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+  <p class="notice">Сторінка не стверджує наявність конкретної ліцензії, 2FA або технології шифрування, доки ці дані не підтверджені.</p>
+  <CTA title="Документи запитано?" text="Перевірте порядок KYC і вимоги до безпечного завантаження файлів." label="Відкрити гід з верифікації" href="/verification/" quiet />
+</BaseLayout>

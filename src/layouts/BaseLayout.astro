@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import SeoHead from '../components/SeoHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { Crumb } from '../lib/schema';
+import { breadcrumbSchema } from '../lib/schema';
+import { siteConfig } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumbs?: Crumb[];
+  schemas?: Record<string, unknown>[];
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  hideHeaderCta?: boolean;
+  image?: string;
+}
+const { title, description, breadcrumbs = [], schemas = [], noindex = false, type = 'website', hideHeaderCta = false, image = '/assets/social/og.png' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const baseSchemas: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: canonical.href,
+    inLanguage: siteConfig.language,
+    isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: Astro.site?.href },
+  },
+];
+if (Astro.url.pathname === '/') {
+  baseSchemas.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.name, url: Astro.site?.href, inLanguage: siteConfig.language });
+}
+if (breadcrumbs.length > 1) baseSchemas.push(breadcrumbSchema(breadcrumbs, Astro.site!.href));
+---
+
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#141410" />
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlH0AAAAASUVORK5CYII=" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <SeoHead {title} {description} {canonical} {noindex} schemas={[...baseSchemas, ...schemas]} {type} {image} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Перейти до вмісту</a>
+    <Header hideCta={hideHeaderCta} />
+    <main id="main-content" class="page-shell">
+      <div class="container"><Breadcrumbs items={breadcrumbs} /><slot /></div>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import InfoTable from '../../components/InfoTable.astro';
+import FAQ from '../../components/FAQ.astro';
+import PaymentStrip from '../../components/PaymentStrip.astro';
+import { paymentMethods, paymentCurrency } from '../../data/payments';
+import { faqSchema } from '../../lib/schema';
+const faq = [
+  { question: 'Чому виведення може затримуватися?', answer: 'Причиною можуть бути KYC-перевірка, перевірка платіжних даних, статус операції у провайдера або додатковий запит служби безпеки.' },
+  { question: 'Що робити, якщо депозит не зарахований?', answer: 'Перевірте статус операції, не повторюйте платіж багато разів і підготуйте час, суму та ідентифікатор транзакції для підтримки.' },
+  { question: 'Чи потрібна верифікація для виведення?', answer: 'Її можуть запросити до або під час виплати. Актуальну вимогу потрібно перевіряти в акаунті.' },
+];
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Платежі', href: '/payments/' }];
+---
+<BaseLayout title="Pokerbet платежі — депозит і виведення коштів" description="Методи поповнення й виведення Pokerbet, ліміти, комісії, строки, KYC та типові причини затримок без вигаданих даних." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
+  <Hero eyebrow="Платежі" title="Ліміти й строки мають бути перевіреними" description={`Базова валюта: ${paymentCurrency}. Невідомі параметри залишені як нейтральні редакторські поля, а не заповнені припущеннями.`} secondaryLabel="Перевірити KYC" secondaryHref="/verification/" />
+  <PaymentStrip />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Методи</p><h2>Депозит і виведення</h2></div><div class="payment-tabs" aria-label="Типи платіжних операцій"><span class="active">Поповнення</span><span>Виведення</span></div><InfoTable caption="Платіжні методи та умови" headers={['Метод', 'Мін. депозит', 'Мін. виведення', 'Комісія', 'Час']} rows={paymentMethods.map((item) => [item.method, item.minDeposit, item.minWithdrawal, item.fee, item.time])} /></section>
+  <section class="section"><div class="card-grid"><article class="info-card"><span class="number">01</span><h3>Затримка</h3><p>Перевірте KYC, статус методу та повідомлення в акаунті.</p></article><article class="info-card"><span class="number">02</span><h3>Помилка депозиту</h3><p>Збережіть квитанцію й не дублюйте операцію, доки не з’ясовано статус.</p></article><article class="info-card"><span class="number">03</span><h3>Скасована виплата</h3><p>Порівняйте платіжні реквізити та зверніться до підтримки з ID операції.</p></article></div></section>
+  <FAQ items={faq} />
+</BaseLayout>

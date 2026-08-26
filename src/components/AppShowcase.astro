@@ -1,0 +1,8 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<section class:list={['app-showcase', { compact }]} aria-labelledby="app-showcase-title">
+  <div class="device-stage" aria-hidden="true"><div class="device"><span class="device-speaker"></span><div class="device-screen"><div class="mini-brand">PB</div><div class="mini-line"></div><div class="mini-card"></div><div class="mini-grid"><i></i><i></i><i></i><i></i></div></div></div><span class="device-ring"></span></div>
+  <div class="app-copy"><p class="eyebrow">Mobile first</p><h2 id="app-showcase-title">Pokerbet на смартфоні</h2><p>Web, Android або iOS — точний формат буде вказаний після підтвердження. Без фальшивого інтерфейсу чи неперевірених посилань.</p><div class="platform-list"><span>Web</span><span>Android</span><span>iOS</span></div><a class="button button-secondary" href="/app/">Детальніше <span aria-hidden="true">→</span></a></div>
+</section>

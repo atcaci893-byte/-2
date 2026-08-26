@@ -1,0 +1,29 @@
+---
+import { primaryNavigation, siteConfig, trustNavigation } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-intro">
+      <a class="footer-brand" href="/">Poker<span>bet</span><small>guide</small></a>
+      <p>{siteConfig.disclaimer}</p>
+      <span class="age-badge">21+</span>
+    </div>
+    <nav aria-label="Розділи сайту">
+      <h3>Навігація</h3>
+      <ul>{primaryNavigation.slice(0, 5).map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+    </nav>
+    <nav aria-label="Допомога">
+      <h3>Допомога</h3>
+      <ul>{primaryNavigation.slice(5).map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+    </nav>
+    <nav aria-label="Безпека та правова інформація"><h3>Безпека</h3>
+      <ul>
+        {trustNavigation.map((item) => (
+          <li>{item.enabled ? <a href={item.href}>{item.label}</a> : <span>{item.label} <small>згодом</small></span>}</li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.name}</span><a href="/responsible-gambling/">Відповідальна гра</a><span>Інформація для повнолітніх користувачів</span></div>
+</footer>

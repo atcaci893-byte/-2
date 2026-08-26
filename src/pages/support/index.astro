@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import FAQ from '../../components/FAQ.astro';
+import { faqSchema } from '../../lib/schema';
+const faq = [
+  { question: 'Який канал підтримки доступний?', answer: 'Підтверджені контактні дані ще не внесені. Перевірте розділ допомоги в акаунті; live chat та email будуть додані після перевірки.' },
+  { question: 'Що підготувати перед зверненням?', answer: 'Опишіть проблему, час події, пристрій, текст помилки та ID операції. Не надсилайте пароль або повні дані картки.' },
+  { question: 'Як подати скаргу?', answer: 'Спочатку зафіксуйте звернення в офіційному каналі та збережіть номер заявки. Порядок ескалації буде додано після підтвердження.' },
+];
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Підтримка', href: '/support/' }];
+---
+<BaseLayout title="Підтримка Pokerbet — канали зв’язку та підготовка звернення" description="Як звернутися до підтримки Pokerbet: канали зв’язку, дані для заявки, типові проблеми та порядок подання скарги." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
+  <Hero eyebrow="Підтримка" title="Добре підготовлена заявка вирішується швидше" description="Підтверджені години, live chat та email будуть внесені централізовано. Поки що сторінка не публікує неперевірені контакти." />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Перед зверненням</p><h2>Підготуйте контекст</h2></div><div class="card-grid"><article class="info-card"><span class="number">01</span><h3>Опис</h3><p>Що сталося, на якому кроці та який результат ви очікували.</p></article><article class="info-card"><span class="number">02</span><h3>Час і пристрій</h3><p>Дата, приблизний час, браузер або модель пристрою.</p></article><article class="info-card"><span class="number">03</span><h3>Ідентифікатор</h3><p>ID платежу чи заявки без пароля та повних реквізитів картки.</p></article></div></section>
+  <p class="notice"><strong>Канали:</strong> live chat, email і години роботи — уточнюються та будуть додані лише після перевірки.</p>
+  <FAQ items={faq} />
+</BaseLayout>
+

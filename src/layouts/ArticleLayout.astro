@@ -1,0 +1,44 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  publishedAt: Date;
+  updatedAt: Date;
+  slug: string;
+  image: string;
+}
+const { title, description, category, publishedAt, updatedAt, slug, image } = Astro.props;
+const url = new URL(`/news/${slug}/`, Astro.site).href;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  dateModified: updatedAt.toISOString(),
+  mainEntityOfPage: url,
+  inLanguage: 'uk',
+  image: new URL(image, Astro.site).href,
+};
+const crumbs = [
+  { label: 'Головна', href: '/' },
+  { label: 'Новини', href: '/news/' },
+  { label: title, href: `/news/${slug}/` },
+];
+const format = (date: Date) => new Intl.DateTimeFormat('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
+---
+
+<BaseLayout title={`${title} — Pokerbet Guide`} {description} breadcrumbs={crumbs} schemas={[schema]} type="article" {image}>
+  <article class="article-page">
+    <header class="article-header">
+      <p class="eyebrow">{category}</p>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+      <p class="article-dates">Опубліковано {format(publishedAt)} · Оновлено {format(updatedAt)}</p>
+    </header>
+    <figure class="article-cover"><img src={image} alt={`Тематичне зображення: ${category}`} width="1200" height="720" decoding="async" /><figcaption>{category}</figcaption></figure>
+    <div class="article-content"><slot /></div>
+  </article>
+</BaseLayout>

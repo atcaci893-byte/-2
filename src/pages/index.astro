@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import AppShowcase from '../components/AppShowcase.astro';
+import PaymentStrip from '../components/PaymentStrip.astro';
+import TrustGrid from '../components/TrustGrid.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { bonusData } from '../data/bonuses';
+import { paymentCurrency } from '../data/payments';
+
+const sections = [
+  { code: 'BNS', title: 'Бонуси без припущень', shortTitle: 'Бонуси', text: 'Активація, строки та вимоги відіграшу.', href: '/bonus/', size: 'large' },
+  { code: 'PRM', title: 'Промокод', shortTitle: 'Промокод', text: 'Де вводити та чому код не спрацьовує.', href: '/promokod/', size: 'medium' },
+  { code: 'APP', title: 'Мобільний доступ', shortTitle: 'Додаток', text: 'Web, Android та iOS після підтвердження.', href: '/app/', size: 'medium' },
+  { code: 'PAY', title: 'Платежі', shortTitle: 'Платежі', text: 'Методи, ліміти та можливі затримки.', href: '/payments/', size: 'small' },
+  { code: 'REG', title: 'Реєстрація', shortTitle: 'Реєстрація', text: 'Від форми до першого безпечного входу.', href: '/registration/', size: 'wide' },
+  { code: 'KYC', title: 'Верифікація', shortTitle: 'Верифікація', text: 'Документи, етапи та причини повторного запиту.', href: '/verification/', size: 'full' },
+];
+const facts = [
+  ['Бонус', bonusData.welcomeAmount],
+  ['Валюта', paymentCurrency],
+  ['Мін. депозит', bonusData.minimumDeposit],
+  ['Платформа', 'Формат уточнюється'],
+  ['KYC', 'Може знадобитися'],
+];
+const startSteps = [
+  ['01', 'Реєстрація', 'Заповніть форму власними даними'],
+  ['02', 'Підтвердження', 'Перевірте телефон або email'],
+  ['03', 'Верифікація', 'Пройдіть KYC, якщо її запитано'],
+  ['04', 'Перший вхід', 'Налаштуйте пароль і ліміти'],
+];
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()).slice(0, 3);
+---
+
+<BaseLayout title="Pokerbet Україна — незалежний інформаційний гід" description="Незалежний український гід про Pokerbet: бонуси, промокод, реєстрація, мобільний доступ, платежі, KYC, безпека та підтримка.">
+  <Hero variant="home" eyebrow="Pokerbet Casino · Україна" title="Pokerbet: усе важливе перед першою дією" description="Короткі пояснення ключових процесів і окремі докладні сторінки — без непідтверджених бонусів, лімітів або заяв про офіційний статус." primaryLabel="Перейти до реєстрації" primaryHref="/registration/" secondaryLabel="Перевірити безпеку" secondaryHref="/security/" />
+
+  <section class="quick-facts" aria-label="Короткі факти про Pokerbet">{facts.map(([label, value]) => <div><span>{label}</span><strong>{value}</strong></div>)}</section>
+
+  <section class="section home-bento" aria-labelledby="guide-heading">
+    <div class="section-heading split-heading"><div><p class="eyebrow">Навігація за питанням</p><h2 id="guide-heading">Все про Pokerbet</h2></div><p>Головна пояснює контекст і веде до спеціалізованої сторінки з потрібною деталізацією.</p></div>
+    <div class="bento-grid">{sections.map((item) => <a class={`bento-card bento-${item.size}`} href={item.href}><span class="bento-icon">{item.code}</span><div><h3>{item.shortTitle}</h3><p>{item.text}</p></div><i aria-hidden="true">↗</i></a>)}</div>
+  </section>
+
+  <section class="bonus-feature" aria-labelledby="bonus-feature-title">
+    <div class="bonus-kicker">Актуальна пропозиція / перевірка даних</div>
+    <div class="bonus-display"><div><p>Вітальний бонус</p><strong>{bonusData.welcomeAmount}</strong></div><div><p>Фриспіни</p><strong>{bonusData.freeSpins}</strong></div></div>
+    <div class="bonus-details"><span><small>Мін. депозит</small>{bonusData.minimumDeposit}</span><span><small>Вейджер</small>{bonusData.wagering}</span><span><small>Термін</small>{bonusData.validity}</span></div>
+    <div class="bonus-feature-footer"><h2 id="bonus-feature-title">Жодних цифр без підтвердження</h2><a class="button" href="/bonus/">Умови бонусу <span aria-hidden="true">→</span></a></div>
+  </section>
+
+  <section class="section start-section" aria-labelledby="start-title"><div class="section-heading"><p class="eyebrow">Як почати</p><h2 id="start-title">Чотири контрольні точки</h2></div><a class="start-timeline" href="/registration/" aria-label="Відкрити повну інструкцію з реєстрації">{startSteps.map(([number, title, text]) => <div><span>{number}</span><i aria-hidden="true"></i><strong>{title}</strong><p>{text}</p></div>)}</a></section>
+
+  <PaymentStrip />
+  <AppShowcase />
+  <TrustGrid />
+
+  <aside class="support-banner"><div><p class="eyebrow">Support desk</p><h2>Потрібна допомога?</h2><p>Дізнайтесь, як звернутися до підтримки, підготувати дані акаунта та вирішити типові проблеми.</p></div><a class="button button-secondary" href="/support/">Підтримка <span aria-hidden="true">→</span></a></aside>
+
+  <section class="section latest-section" aria-labelledby="latest-title"><div class="section-heading split-heading"><div><p class="eyebrow">Editorial</p><h2 id="latest-title">Останні матеріали</h2></div><a class="text-link" href="/news/">Усі матеріали <span aria-hidden="true">→</span></a></div><div class="article-list editorial-list">{posts.map((post, index) => <ArticleCard slug={post.id} featured={index === 0} {...post.data} />)}</div></section>
+</BaseLayout>

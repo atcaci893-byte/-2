@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import InfoTable from '../../components/InfoTable.astro';
+import AppShowcase from '../../components/AppShowcase.astro';
+import { appPlatforms } from '../../data/apps';
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Додаток', href: '/app/' }];
+---
+<BaseLayout title="Pokerbet додаток — Android, iOS і мобільна версія" description="Мобільний доступ до Pokerbet: формати для Android та iOS, встановлення, авторизація, оновлення й безпечне завантаження." breadcrumbs={crumbs}>
+  <Hero eyebrow="Мобільний доступ" title="Android та iOS — окремі сценарії" description="Точний формат застосунку ще має бути підтверджений. Інфраструктура сторінки готова для APK, PWA, App Store або вебверсії." />
+  <AppShowcase compact />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Порівняння</p><h2>Доступні формати</h2></div><InfoTable caption="Порівняння мобільного доступу" headers={['Параметр', 'Android', 'iOS']} rows={appPlatforms.map((item) => [item.parameter, item.android, item.ios])} /></section>
+  <section class="section"><div class="card-grid"><article class="info-card"><span class="number">ANDROID</span><h3>APK — лише після підтвердження</h3><p>Завантажуйте файл лише з перевіреного домену. Перед встановленням перевірте джерело, назву пакета та системний запит.</p></article><article class="info-card"><span class="number">iOS</span><h3>Застосунок, PWA або веб</h3><p>Після підтвердження формату тут з’явиться точна інструкція, включно з додаванням вебверсії на домашній екран.</p></article><article class="info-card"><span class="number">SAFE</span><h3>Оновлення без ризику</h3><p>Не встановлюйте збірки з форумів, файлообмінників або посилань у приватних повідомленнях.</p></article></div></section>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import { headerNavigation, moreNavigation, primaryNavigation, siteConfig, trustNavigation } from '../data/site';
+const currentPath = Astro.url.pathname;
+interface Props { hideCta?: boolean }
+const { hideCta = false } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="brand" href="/" aria-label="Pokerbet Guide — головна">
+      <span class="brand-word">Poker<span>bet</span></span>
+      <small>guide</small>
+    </a>
+    <nav class="desktop-nav" aria-label="Основна навігація">
+      {headerNavigation.map((item) => (
+        <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <details class="more-menu">
+        <summary>Ще <span aria-hidden="true">⌄</span></summary>
+        <div>{moreNavigation.map((item) => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>)}</div>
+      </details>
+    </nav>
+    <span class="header-age">21+</span>
+    {!hideCta && <a class="button button-small header-cta" href={siteConfig.cta.href}>{siteConfig.cta.label}</a>}
+    <details class="mobile-menu">
+      <summary aria-label="Відкрити меню"><span></span><span></span></summary>
+      <div class="mobile-drawer">
+        <div class="drawer-label">Навігація</div>
+        <nav aria-label="Мобільна навігація">{primaryNavigation.map((item, index) => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}><span>0{index + 1}</span>{item.label}</a>)}</nav>
+        <nav class="drawer-trust" aria-label="Правова інформація">{trustNavigation.filter((item) => item.enabled).map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+        {!hideCta && <a class="button drawer-cta" href={siteConfig.cta.href}>{siteConfig.cta.label}</a>}
+      </div>
+    </details>
+  </div>
+</header>

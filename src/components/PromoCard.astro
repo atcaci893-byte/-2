@@ -1,0 +1,12 @@
+---
+import { bonusData } from '../data/bonuses';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<aside class:list={['promo-card', { compact }]} aria-label="Параметри актуальної пропозиції">
+  <div class="promo-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="promo-top"><span>Актуальна пропозиція</span><i>21+</i></div>
+  <div class="promo-value"><small>Вітальний бонус</small><strong>{bonusData.welcomeAmount}</strong></div>
+  <div class="promo-stats"><div><span>Фриспіни</span><b>{bonusData.freeSpins}</b></div><div><span>Мін. депозит</span><b>{bonusData.minimumDeposit}</b></div></div>
+  <a class="button button-dark" href="/bonus/">Перевірити умови <span aria-hidden="true">→</span></a>
+</aside>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { bonusData } from '../../data/bonuses';
+import { faqSchema } from '../../lib/schema';
+
+const faq = [
+  { question: 'Де перевіряти актуальний розмір бонусу?', answer: 'У правилах конкретної акції та в інтерфейсі сервісу перед активацією. На цій сторінці непідтверджені цифри не публікуються.' },
+  { question: 'Що таке wagering?', answer: 'Це вимога відіграшу. Вона показує, скільки разів потрібно відіграти визначену правилами суму.' },
+  { question: 'Чому бонус може не активуватися?', answer: 'Можливі причини: невиконані умови, неправильний код, завершення строку дії, обмеження для акаунта або технічна помилка.' },
+];
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Бонуси', href: '/bonus/' }];
+---
+
+<BaseLayout title="Бонуси Pokerbet — умови, активація та вейджер" description="Структурований гід про бонуси Pokerbet: активація, фриспіни, мінімальний депозит, wagering, строки та обмеження без вигаданих умов." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
+  <Hero variant="bonus" eyebrow="Бонуси" title="Умови важливіші за великий банер" description="Тут зібрані поля, які потрібно перевірити перед активацією пропозиції. Непідтверджені цифри позначені для редакторського оновлення." secondaryLabel="Як працює промокод" secondaryHref="/promokod/" />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Параметри пропозиції</p><h2>Актуальні дані</h2></div><div class="facts-strip"><div class="fact"><span>Вітальний бонус</span><strong>{bonusData.welcomeAmount}</strong></div><div class="fact"><span>Фриспіни</span><strong>{bonusData.freeSpins}</strong></div><div class="fact"><span>Мін. депозит</span><strong>{bonusData.minimumDeposit}</strong></div><div class="fact"><span>Вейджер</span><strong>{bonusData.wagering}</strong></div></div></section>
+  <section class="section"><div class="section-heading"><p class="eyebrow">Перед активацією</p><h2>Короткий чекліст</h2></div><div class="card-grid"><article class="info-card"><span class="number">01</span><h3>Перевірте строк</h3><p>Поточне значення: {bonusData.validity}. Уточніть дату завершення та строк відіграшу.</p></article><article class="info-card"><span class="number">02</span><h3>Прочитайте обмеження</h3><p>Перевірте допустимі ігри, максимальну ставку та правила виведення.</p></article><article class="info-card"><span class="number">03</span><h3>Збережіть умови</h3><p>Зафіксуйте правила, які були доступні в момент активації пропозиції.</p></article></div></section>
+  <p class="notice"><strong>Активація:</strong> {bonusData.activation}</p>
+  <FAQ items={faq} />
+  <CTA title="Є код для активації?" text="Промокоди мають окрему логіку та не змішуються з повним оглядом бонусних умов." label="Відкрити гід про промокоди" href="/promokod/" quiet />
+</BaseLayout>

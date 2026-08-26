@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical: URL;
+  image?: string;
+  noindex?: boolean;
+  schemas?: Record<string, unknown>[];
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  noindex = false,
+  schemas = [],
+  type = 'website',
+} = Astro.props;
+const imageUrl = image ? new URL(image, canonical).href : undefined;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content="uk_UA" />
+<meta property="og:site_name" content="Pokerbet Guide" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+{schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
+

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import FAQ from '../../components/FAQ.astro';
+import { faqSchema } from '../../lib/schema';
+const faq = [
+  { question: 'Коли можуть запросити KYC?', answer: 'Під час реєстрації, перед окремими фінансовими операціями або в межах перевірки безпеки.' },
+  { question: 'Скільки триває перевірка?', answer: 'Підтвердженого строку наразі немає. Він може залежати від якості документів і потреби в додатковій інформації.' },
+  { question: 'Чому документ можуть відхилити?', answer: 'Типові причини: нечітке фото, обрізані краї, відблиски, прострочений документ або невідповідність даних профілю.' },
+];
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Верифікація', href: '/verification/' }];
+---
+<BaseLayout title="Верифікація Pokerbet — як пройти KYC" description="Гід з KYC у Pokerbet: навіщо потрібна перевірка, можливі документи, етапи, строки, причини відмови та безпечна передача даних." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
+  <Hero eyebrow="KYC" title="Верифікація без зайвих повторних запитів" description="Підготуйте саме ті документи, які запитано, перевірте якість зображень і використовуйте лише захищений канал в акаунті." />
+  <section class="section"><div class="section-heading"><p class="eyebrow">Можливі документи</p><h2>Що можуть попросити</h2></div><div class="card-grid kyc-grid"><article class="info-card"><span class="number">ID</span><h3>Посвідчення особи</h3><p>Паспорт або інший документ — тільки якщо він зазначений у запиті.</p></article><article class="info-card"><span class="number">ADR</span><h3>Підтвердження адреси</h3><p>Документ із адресою може знадобитися в окремих випадках.</p></article><article class="info-card"><span class="number">PAY</span><h3>Платіжний метод</h3><p>Додаткове підтвердження може стосуватися власника платіжного інструмента.</p></article><article class="info-card"><span class="number">+</span><h3>Додаткова перевірка</h3><p>Можлива лише після окремого запиту з поясненням потрібних даних.</p></article></div></section>
+  <section class="section"><div class="section-heading"><p class="eyebrow">Процес</p><h2>Як пройти перевірку</h2></div><ol class="steps"><li><strong>Прочитайте точний запит</strong><p>Не надсилайте документи, яких не просили.</p></li><li><strong>Звірте дані профілю</strong><p>Ім’я, дата народження та інші поля мають відповідати документам.</p></li><li><strong>Зробіть чіткі фото</strong><p>Усі краї документа повинні бути видимими, без розмиття й відблисків.</p></li><li><strong>Завантажте через акаунт</strong><p>Не передавайте документи через випадкові форми або сторонні чати.</p></li></ol></section>
+  <FAQ items={faq} />
+</BaseLayout>

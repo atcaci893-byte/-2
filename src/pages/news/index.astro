@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const categories = [...new Set(posts.map((post) => post.data.category))];
+const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Новини', href: '/news/' }];
+---
+<BaseLayout title="Новини й гіди Pokerbet — пояснення без зайвого шуму" description="Статті українською про бонусні умови, KYC, платежі, безпеку та використання Pokerbet. Дати публікації й оновлення кожного матеріалу." breadcrumbs={crumbs}>
+  <Hero eyebrow="Редакційний хаб" title="Пояснення, до яких можна повернутися" description="Короткі практичні матеріали про терміни, перевірки й безпеку. Кожна стаття має дату публікації та останнього оновлення." />
+  <div class="category-row" aria-label="Категорії"><span>Усі</span>{categories.map((category) => <span>{category}</span>)}</div>
+  <section class="section" aria-labelledby="latest-heading"><div class="section-heading"><p class="eyebrow">Останні матеріали</p><h2 id="latest-heading">Нові статті</h2></div><div class="article-list">{posts.map((post, index) => <ArticleCard slug={post.id} featured={index === 0} {...post.data} />)}</div></section>
+</BaseLayout>

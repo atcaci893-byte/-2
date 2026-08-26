@@ -1,0 +1,18 @@
+---
+import type { FaqItem } from '../lib/schema';
+interface Props { items: FaqItem[]; title?: string }
+const { items, title = 'Поширені запитання' } = Astro.props;
+---
+
+<section class="section faq-section">
+  <div class="section-heading"><p class="eyebrow">FAQ</p><h2>{title}</h2></div>
+  <div class="faq-list">
+    {items.map((item) => (
+      <details>
+        <summary>{item.question}</summary>
+        <p>{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
