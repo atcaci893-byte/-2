@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   category: string;
   publishedAt: Date;
@@ -10,6 +11,7 @@ interface Props {
   image: string;
 }
 const { title, description, category, publishedAt, updatedAt, slug, image } = Astro.props;
+const pageTitle = Astro.props.seoTitle ?? `${title} — Pokerbet Guide`;
 const url = new URL(`/news/${slug}/`, Astro.site).href;
 const schema = {
   '@context': 'https://schema.org',
@@ -30,7 +32,7 @@ const crumbs = [
 const format = (date: Date) => new Intl.DateTimeFormat('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
 ---
 
-<BaseLayout title={`${title} — Pokerbet Guide`} {description} breadcrumbs={crumbs} schemas={[schema]} type="article" {image}>
+<BaseLayout title={pageTitle} {description} breadcrumbs={crumbs} schemas={[schema]} type="article" {image}>
   <article class="article-page">
     <header class="article-header">
       <p class="eyebrow">{category}</p>
