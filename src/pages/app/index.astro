@@ -3,12 +3,88 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import AppShowcase from '../../components/AppShowcase.astro';
+import FAQ from '../../components/FAQ.astro';
 import { appPlatforms } from '../../data/apps';
+import { faqSchema } from '../../lib/schema';
+
+const faq = [
+  { question: 'Чи є додаток Pokerbet для Android?', answer: 'Так. Pokerbet поширює Android-клієнт у форматі APK з підтримкою версії Android 7.0 і вище.' },
+  { question: 'Чи є Pokerbet у App Store?', answer: 'Окремого застосунку Pokerbet для iPhone та iPad зараз немає. На iOS використовується мобільна версія сайту через Safari або Chrome.' },
+  { question: 'Чи безпечно завантажувати Pokerbet APK?', answer: 'Ключове питання - джерело файлу. Для перевірки походження потрібно використовувати сторінку завантаження Pokerbet, а не сторонні APK-каталоги чи файли, отримані від інших користувачів.' },
+  { question: 'Чи потрібен новий акаунт у додатку?', answer: 'Ні. Android-клієнт використовує той самий аккаунт Pokerbet, що й веб-версія. Окремо реєструватися після встановлення не потрібно.' },
+  { question: 'Як користуватися Pokerbet на iPhone без застосунку?', answer: 'Відкрийте Pokerbet у Safari або Chrome. За бажанням можна додати сторінку на головний екран, щоб запускати її через ярлик.' },
+  { question: 'Що робити, якщо Pokerbet APK не встановлюється?', answer: 'Перевірте версію Android, вільну пам’ять і дозвіл на встановлення APK. Якщо проблема залишається, повторно завантажте файл із джерела Pokerbet або зверніться до підтримки.' },
+  { question: 'Чи можна користуватися Pokerbet без встановлення?', answer: 'Так. На Android та iOS доступна вебверсія Pokerbet. Для iPhone це основний спосіб мобільного доступу, тоді як Android дає додаткову можливість встановити APK.' },
+];
+const compareRows = [
+  ['Встановлення', 'Потрібен APK', 'Не потрібне'],
+  ['Доступ через браузер', 'Ні, якщо використовується окремий клієнт', 'Так'],
+  ['Вхід', 'Існуючий акаунт Pokerbet', 'Існуючий акаунт Pokerbet'],
+  ['Push-сповіщення', 'Підтримуються для турнірів', 'На iOS не підтримуються'],
+  ['Підтримувані пристрої', 'Android', 'Android та iOS'],
+  ['Оновлення', 'Потрібно стежити за актуальністю клієнта', 'Окремого оновлення немає'],
+];
+const issueRows = [
+  ['APK не встановлюється', 'Android заборонив встановлення з цього джерела', 'Перевірити системний дозвіл для браузера або файлового менеджера'],
+  ['Android повідомляє про несумісність', 'Версія ОС нижча за потрібну', 'Перевірити, чи встановлено Android 7.0 або новішу версію'],
+  ['Файл не відкривається', 'APK завантажився некоректно', 'Видалити файл та скачати його знову з сайту Pokerbet'],
+  ['Немає місця для встановлення', 'Недостатньо вільної пам’яті', 'Звільнити щонайменше 150 МБ'],
+  ['Не вдається увійти', 'Помилка логіна чи пароля', 'Перевірити дані входу або скористатися відновленням доступу'],
+];
 const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Додаток', href: '/app/' }];
 ---
-<BaseLayout title="Pokerbet додаток — Android, iOS і мобільна версія" description="Мобільний доступ до Pokerbet: формати для Android та iOS, встановлення, авторизація, оновлення й безпечне завантаження." breadcrumbs={crumbs}>
-  <Hero eyebrow="Мобільний доступ" title="Android та iOS — окремі сценарії" description="Точний формат застосунку ще має бути підтверджений. Інфраструктура сторінки готова для APK, PWA, App Store або вебверсії." />
+
+<BaseLayout title="Додаток Pokerbet 2026: Android, iOS та мобільна версія" description="Додаток Pokerbet 2026: як користуватися Pokerbet на смартфоні, де завантажити Android APK, що доступно на iPhone та чим мобільна версія відрізняється." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
+  <Hero eyebrow="Мобільний доступ" title="Додаток Pokerbet 2026: як завантажити на Android та iOS" description="Для Android йдеться про APK, а для iOS - про веб-доступ без окремого встановлення. Один акаунт працює і на сайті, і в мобільному форматі." />
   <AppShowcase compact />
-  <section class="section"><div class="section-heading"><p class="eyebrow">Порівняння</p><h2>Доступні формати</h2></div><InfoTable caption="Порівняння мобільного доступу" headers={['Параметр', 'Android', 'iOS']} rows={appPlatforms.map((item) => [item.parameter, item.android, item.ios])} /></section>
-  <section class="section"><div class="card-grid"><article class="info-card"><span class="number">ANDROID</span><h3>APK — лише після підтвердження</h3><p>Завантажуйте файл лише з перевіреного домену. Перед встановленням перевірте джерело, назву пакета та системний запит.</p></article><article class="info-card"><span class="number">iOS</span><h3>Застосунок, PWA або веб</h3><p>Після підтвердження формату тут з’явиться точна інструкція, включно з додаванням вебверсії на домашній екран.</p></article><article class="info-card"><span class="number">SAFE</span><h3>Оновлення без ризику</h3><p>Не встановлюйте збірки з форумів, файлообмінників або посилань у приватних повідомленнях.</p></article></div></section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Основна інформація</p><h2>Додаток Pokerbet у 2026 році</h2></div>
+    <p>Pokerbet окремо описує Android-клієнт і веб-версію для iOS. На сторінці завантаження Android вказані мінімальні вимоги: Android 7.0 або новіша версія, 150 МБ вільного місця та доступ до інтернету через 4G/LTE або Wi-Fi.</p>
+    <InfoTable caption="Порівняння мобільного доступу Pokerbet" headers={['Параметр', 'Android', 'iOS']} rows={appPlatforms.map((item) => [item.parameter, item.android, item.ios])} />
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Android</p><h2>Додаток Pokerbet для Android</h2></div>
+    <p>Для Pokerbet Android доступний окремий APK. Як правило, порядок дій такий: відкрити сайт у браузері телефона, перейти до розділу завантаження програми, вибрати Android, скачати Pokerbet APK-файл і запустити встановлення мобільного клієнту.</p>
+    <p>Окремого посилання на Google Play у перевірених матеріалах Pokerbet немає. Тому не варто шукати випадкову копію застосунку в сторонньому магазині або APK-каталозі.</p>
+    <ol class="steps">
+      <li><strong>Відкрити сайт Pokerbet з телефону.</strong><p>Використовуйте той самий домен, з якого берете APK.</p></li>
+      <li><strong>Перейти до розділу Poker App / Download App.</strong><p>Виберіть Android та завантажте файл.</p></li>
+      <li><strong>Дозволити встановлення з джерела.</strong><p>Якщо Android запитає дозвіл, надайте його лише для браузера або файлового менеджера, з якого відкриваєте файл.</p></li>
+      <li><strong>Завершити встановлення.</strong><p>Після встановлення увійдіть у вже створений акаунт Pokerbet.</p></li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">iOS</p><h2>Pokerbet для iPhone та iOS</h2></div>
+    <p>Для Pokerbet iOS ситуація інша. Окремого застосунку для iPhone та iPad зараз немає. Сам Pokerbet вказує, що на iOS використовується веб-версія сайту, оптимізована для Safari та Chrome.</p>
+    <p>За бажанням сторінку можна винести на головний екран. Для цього в Safari потрібно відкрити меню "Поділитися", вибрати додавання на початковий екран і зберегти ярлик Pokerbet. Цей ярлик не є нативним застосунком.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Вибір формату</p><h2>Pokerbet додаток чи мобільний сайт</h2></div>
+    <p>Різниця між двома варіантами найбільш помітна на Android. Тут можна або встановити APK, або залишитися в браузері. На iOS окремого застосунку немає, тому питання зводиться до використання веб-версії.</p>
+    <InfoTable caption="Додаток Pokerbet і мобільна версія" headers={['Параметр', 'Додаток Pokerbet для Android', 'Мобільна версія Pokerbet']} rows={compareRows} />
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Акаунт</p><h2>Вхід і реєстрація в додатку Покербет</h2></div>
+    <p>Після встановлення Android-клієнта не потрібно створювати окремий профіль. Для входу на Pokerbet з телефону використовується той самий акаунт, що й на сайті. Якщо ігрового профілю ще немає, реєстрацію можна почати з мобільного браузера або відповідного пункту клієнта.</p>
+    <p>Після авторизації мобільний клієнт відкриває покерний розділ, а також доступні на платформі інші продукти. Конкретний склад розділів залежить від поточної версії клієнта та аккаунту.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Проблеми</p><h2>Чому не встановлюється або не відкривається Pokerbet</h2></div>
+    <InfoTable caption="Типові проблеми з Pokerbet APK" headers={['Проблема', 'Ймовірна причина', 'Що зробити']} rows={issueRows} />
+    <p>Якщо APK не встановлюється навіть після повторного завантаження, не потрібно шукати іншу копію в мережі. Безпечніший варіант - перейти на мобільну веб-версію або звернутися до підтримки Pokerbet.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Безпека</p><h2>Безпека завантаження Покербет з телефону</h2></div>
+    <p>Для Pokerbet APK головне питання - джерело файлу. Назва програми та логотип самі по собі нічого не підтверджують. Завантажувати файл потрібно з офіційної сторінки Pokerbet, де оператор сам розміщує посилання на Android-клієнт.</p>
+    <p>Файли з Telegram, форумів, файлообмінників або сторонніх каталогів не дають такого рівня перевірки походження. Після встановлення також варто переглянути дозволи програми.</p>
+  </section>
+
+  <FAQ items={faq} />
 </BaseLayout>

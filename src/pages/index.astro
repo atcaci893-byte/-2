@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import InfoTable from '../components/InfoTable.astro';
 import AppShowcase from '../components/AppShowcase.astro';
 import PaymentStrip from '../components/PaymentStrip.astro';
 import TrustGrid from '../components/TrustGrid.astro';
@@ -21,8 +22,20 @@ const facts = [
   ['Бонус', bonusData.welcomeAmount],
   ['Валюта', paymentCurrency],
   ['Мін. депозит', bonusData.minimumDeposit],
-  ['Платформа', 'Формат уточнюється'],
-  ['KYC', 'Може знадобитися'],
+  ['Платформа', 'Казино, покер і спорт'],
+  ['KYC', 'Потрібна для виведення коштів'],
+];
+const overviewRows = [
+  ['Казино', 'слоти, Live Casino, швидкі ігри'],
+  ['Вітальний пакет казино', 'до 150 000 грн + 650 FS за перші 5 депозитів'],
+  ['Перший депозит для бонусу', 'від 500 грн'],
+  ['Валюти', 'UAH, USD, EUR та криптовалюти'],
+  ['Мінімальна сума виведення', 'залежить від платіжного методу'],
+  ['Мобільний доступ', 'браузер, Android APK та вебверсія для iOS'],
+  ['Верифікація', 'потрібна для виведення коштів'],
+  ['Служба підтримки', 'чат, Telegram, email'],
+  ['Мінімальний дозволений вік для гри', '21, згідно законодавства України'],
+  ['Дата перевірки', '27 серпня 2026 року'],
 ];
 const startSteps = [
   ['01', 'Реєстрація', 'Заповніть форму власними даними'],
@@ -33,10 +46,16 @@ const startSteps = [
 const posts = (await getCollection('news', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()).slice(0, 3);
 ---
 
-<BaseLayout title="Pokerbet Україна — незалежний інформаційний гід" description="Незалежний український гід про Pokerbet: бонуси, промокод, реєстрація, мобільний доступ, платежі, KYC, безпека та підтримка.">
-  <Hero variant="home" eyebrow="Pokerbet Casino · Україна" title="Pokerbet: усе важливе перед першою дією" description="Короткі пояснення ключових процесів і окремі докладні сторінки — без непідтверджених бонусів, лімітів або заяв про офіційний статус." primaryLabel="Перейти до реєстрації" primaryHref="/registration/" secondaryLabel="Перевірити безпеку" secondaryHref="/security/" />
+<BaseLayout title="Pokerbet казино Україна 2026 – бонуси, вхід та огляд" description="Огляд казино Pokerbet в Україні: актуальні бонуси й промокоди, реєстрація, додаток, платежі, верифікація, підтримка та безпека акаунта.">
+  <Hero variant="home" eyebrow="Pokerbet Casino · Україна" title="Pokerbet казино Україна: бонуси, реєстрація, додаток і платежі" description="Pokerbet – платформа з окремим казино, в якому доступні слоти, live- та швидкі ігри. Для користувачів з України передбачені рахунки у гривні, україномовний інтерфейс і кілька платіжних сценаріїв." primaryLabel="Перейти до реєстрації" primaryHref="/registration/" secondaryLabel="Перевірити бонуси" secondaryHref="/bonus/" />
 
   <section class="quick-facts" aria-label="Короткі факти про Pokerbet">{facts.map(([label, value]) => <div><span>{label}</span><strong>{value}</strong></div>)}</section>
+
+  <section class="section" aria-labelledby="overview-title">
+    <div class="section-heading split-heading"><div><p class="eyebrow">Огляд Pokerbet</p><h2 id="overview-title">Основна інформація</h2></div><p>На цій сторінці зібрана основна інформація про Покербет казино: бонуси, створення акаунта, каталог ігор, способи оплати, мобільний доступ, KYC та підтримку.</p></div>
+    <InfoTable caption="Pokerbet казино Україна - основна інформація" headers={['Параметр', 'Дані Pokerbet']} rows={overviewRows} />
+    <p class="notice">Розміри бонусів Pokerbet, касові ліміти та перелік доступних методів періодично змінюються. Перед депозитом краще ще раз звірити дані безпосередньо в акаунті.</p>
+  </section>
 
   <section class="section home-bento" aria-labelledby="guide-heading">
     <div class="section-heading split-heading"><div><p class="eyebrow">Навігація за питанням</p><h2 id="guide-heading">Все про Pokerbet</h2></div><p>Головна пояснює контекст і веде до спеціалізованої сторінки з потрібною деталізацією.</p></div>
