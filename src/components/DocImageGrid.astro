@@ -1,0 +1,24 @@
+---
+interface DocImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  tall?: boolean;
+}
+
+interface Props {
+  images: DocImage[];
+  columns?: 'two' | 'three';
+}
+
+const { images, columns = 'two' } = Astro.props;
+---
+
+<div class={`doc-image-grid doc-image-grid-${columns}`}>
+  {images.map((image) => (
+    <figure class={`doc-image-card${image.tall ? ' doc-image-tall' : ''}`}>
+      <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+      {image.caption && <figcaption>{image.caption}</figcaption>}
+    </figure>
+  ))}
+</div>

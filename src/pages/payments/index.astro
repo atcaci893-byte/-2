@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import FAQ from '../../components/FAQ.astro';
 import PaymentStrip from '../../components/PaymentStrip.astro';
@@ -56,6 +57,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Платежі
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Основна інформація</p><h2>Pokerbet поповнення та виведення у 2026 році</h2></div>
     <p>Pokerbet підтримує гривню, долар та євро і не встановлює один універсальний мінімум для всіх способів оплати. У правилах платформи прямо зазначено, що мінімальна сума депозиту та подальшого виведення залежить від вибраного платіжного методу.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/payments/payments-1.png', alt: 'Головний банер Pokerbet у кабінеті', caption: 'Кабінет Pokerbet перед переходом до каси' },
+      { src: '/assets/docs/payments/payments-7.png', alt: 'Промо-зображення Pokerbet з фішками та монетами', caption: 'Фінансовий розділ і промо-блоки' },
+    ]} />
     <InfoTable caption="Основна інформація про платежі Pokerbet" headers={['Параметр', 'Деталі']} rows={summaryRows} />
     <p>У правилах також встановлено загальний ліміт на зняття виграшів: не більше 10 000 євро протягом тижня та 25 000 євро протягом місяця. Це правила для Pokerbet виведення, а не універсальний ліміт окремого платіжного методу.</p>
   </section>
@@ -74,6 +79,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Платежі
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Методи</p><h2>Способи поповнення Pokerbet</h2></div>
     <p>Набір методів потрібно оцінювати саме за касою, оскільки публічні сторінки можуть містити ширший перелік. На сайті Pokerbet описані картки Visa/Mastercard, Skrill, NETELLER, криптовалютні платежі та окремі локальні методи.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/payments/payments-4.jpg', alt: 'Список платіжних методів Pokerbet у таблиці', caption: 'Методи в касі' },
+      { src: '/assets/docs/payments/payments-6.jpg', alt: 'Екран Pokerbet зі способами поповнення та платіжними логотипами', caption: 'Вибір платіжного методу' },
+    ]} />
     <InfoTable caption="Способи поповнення Pokerbet" headers={['Метод', 'Час зарахування', 'Особливості']} rows={depositRows} />
     <InfoTable caption="Платіжні методи та умови" headers={['Метод', 'Мін. депозит', 'Мін. виведення', 'Комісія', 'Час']} rows={paymentMethods.map((item) => [item.method, item.minDeposit, item.minWithdrawal, item.fee, item.time])} />
   </section>
@@ -90,6 +99,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Платежі
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Виведення</p><h2>Як вивести гроші з Pokerbet</h2></div>
     <p>Заявка на Покербет виведення коштів оформлюється через розділ "Каса". Запит на виплату приймається через сайт; заявки телефоном або електронною поштою не обробляються.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/payments/payments-5.jpg', alt: 'Мобільний екран Pokerbet з касою і платіжними методами', caption: 'Каса на смартфоні', tall: true },
+      { src: '/assets/docs/payments/payments-10.png', alt: 'Мобільний список платіжних методів Pokerbet', caption: 'Вибір методу на мобільному', tall: true },
+    ]} />
     <ol class="steps">
       <li><strong>Увійти до акаунта Pokerbet.</strong><p>Відкрити "Касу" та перейти до розділу виведення.</p></li>
       <li><strong>Вибрати доступний платіжний метод.</strong><p>Для різних методів поля відрізняються.</p></li>

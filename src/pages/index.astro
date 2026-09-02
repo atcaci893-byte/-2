@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import InfoTable from '../components/InfoTable.astro';
+import DocImageGrid from '../components/DocImageGrid.astro';
 import AppShowcase from '../components/AppShowcase.astro';
 import PaymentStrip from '../components/PaymentStrip.astro';
 import TrustGrid from '../components/TrustGrid.astro';
@@ -54,6 +55,11 @@ const posts = (await getCollection('news', ({ data }) => !data.draft)).sort((a, 
   <section class="section" aria-labelledby="overview-title">
     <div class="section-heading split-heading"><div><p class="eyebrow">Огляд Pokerbet</p><h2 id="overview-title">Основна інформація</h2></div><p>На цій сторінці зібрана основна інформація про Покербет казино: бонуси, створення акаунта, каталог ігор, способи оплати, мобільний доступ, KYC та підтримку.</p></div>
     <InfoTable caption="Pokerbet казино Україна - основна інформація" headers={['Параметр', 'Дані Pokerbet']} rows={overviewRows} />
+    <DocImageGrid columns="three" images={[
+      { src: '/assets/docs/home/home-3.png', alt: 'Промо-зображення Pokerbet Casino з ігровими фішками', caption: 'Казино-напрямок Pokerbet' },
+      { src: '/assets/docs/home/home-2.jpg', alt: 'Каталог слотів Pokerbet на темному інтерфейсі', caption: 'Слоти та швидкі ігри' },
+      { src: '/assets/docs/home/home-1.jpg', alt: 'Список провайдерів у кабінеті Pokerbet', caption: 'Провайдери та ігрові розділи' },
+    ]} />
     <p class="notice">Розміри бонусів Pokerbet, касові ліміти та перелік доступних методів періодично змінюються. Перед депозитом краще ще раз звірити дані безпосередньо в акаунті.</p>
   </section>
 

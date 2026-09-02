@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
@@ -57,6 +58,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Реєстра
 
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Порядок дій</p><h2>Як зареєструватися на Pokerbet</h2></div>
+    <DocImageGrid images={[
+      { src: '/assets/docs/registration/registration-2.png', alt: 'Мобільна форма входу або реєстрації Pokerbet', caption: 'Мобільний сценарій реєстрації', tall: true },
+      { src: '/assets/docs/registration/registration-1.jpg', alt: 'Форма реєстрації Pokerbet на темному фоні зі стрілкою до кнопки', caption: 'Початок створення акаунта' },
+    ]} />
     <ol class="steps">
       <li><strong>Відкрити форму реєстрації</strong><p>Перед заповненням анкети перевірте адресу сторінки, особливо якщо ви прийшли з пошукової видачі або зовнішнього посилання.</p></li>
       <li><strong>Заповнити реєстраційні дані</strong><p>Вносіть власні дані без скорочень і вигаданих значень. Pokerbet вимагає достовірну та актуальну інформацію.</p></li>
@@ -83,11 +88,19 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Реєстра
     <div class="section-heading"><p class="eyebrow">Промокод</p><h2>Промокод і бонус за реєстрацію від Покербет</h2></div>
     <p>Під час реєстрації Покербет може відображатися окреме поле для введення промокоду. Якщо воно присутнє у вашій версії форми, його потрібно заповнити до завершення реєстрації. Сам код не є обов’язковою частиною створення акаунту, якщо форма дозволяє перейти далі без нього.</p>
     <p>Сам факт реєстрації не варто трактувати як автоматичне отримання будь-якого бонусу. Право на конкретну винагороду визначається умовами відповідної акції.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/registration/registration-4.png', alt: 'Інтерфейс Pokerbet з виділеним полем промокоду', caption: 'Поле промокоду в реєстраційній формі' },
+      { src: '/assets/docs/registration/registration-5.png', alt: 'Промо Pokerbet з бонусом для депозиту', caption: 'Бонусна пропозиція після створення акаунта' },
+    ]} />
   </section>
 
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Помилки</p><h2>Чому не вдається створити акаунт Pokerbet</h2></div>
     <p>Причину варто шукати в конкретному повідомленні форми, а не просто раз за разом повторювати реєстрацію.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/registration/registration-3.png', alt: 'Повідомлення Pokerbet про помилку авторизації', caption: 'Приклад повідомлення про помилку' },
+      { src: '/assets/docs/registration/registration-6.png', alt: 'Користувач за ноутбуком із відкритим Pokerbet', caption: 'Перевірка профілю після реєстрації' },
+    ]} />
     <InfoTable caption="Типові проблеми з реєстрацією Pokerbet" headers={['Помилка', 'Що перевірити', 'Що робити']} rows={errorRows} />
     <p>Не варто створювати другий профіль на інший номер або чужі дані, щоб обійти помилку реєстрації. Якщо проблема залишається, краще звернутися до підтримки і вказати точний текст помилки.</p>
   </section>

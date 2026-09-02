@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import FAQ from '../../components/FAQ.astro';
 import { faqSchema } from '../../lib/schema';
@@ -56,6 +57,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Верифік
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Коли потрібна</p><h2>Коли платформа просить пройти верифікацію Pokerbet</h2></div>
     <p>Найчастіше користувач стикається з вимогами KYC не через сам факт створення акаунту, а коли оператору потрібно підтвердити дані, платіж або операцію.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/verification/verification-1.png', alt: 'Повідомлення Pokerbet про помилку авторизації або перевірку акаунта', caption: 'Повідомлення в акаунті' },
+      { src: '/assets/docs/verification/verification-6.png', alt: 'Сторінка правил і умов Pokerbet', caption: 'Умови та правила перевірки' },
+    ]} />
     <div class="card-grid kyc-grid">
       <article class="info-card"><span class="number">01</span><h3>Перевірка особи</h3><p>Pokerbet має право запросити документи для підтвердження того, що акаунт належить саме зазначеній людині.</p></article>
       <article class="info-card"><span class="number">02</span><h3>Фінансова операція</h3><p>Додаткові процедури ідентифікації можуть проводитися при внесенні коштів або перевірці платіжного інструмента.</p></article>
@@ -67,6 +72,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Верифік
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Документи</p><h2>Які документи для верифікації Pokerbet необхідні</h2></div>
     <p>Pokerbet у правилах і AML/KYC-політиці підтверджує кілька категорій документів. Водночас вони не потрібні всім користувачам одночасно.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/verification/verification-3.jpg', alt: 'Форма Pokerbet на темному фоні', caption: 'Запит даних у профілі' },
+      { src: '/assets/docs/verification/verification-4.jpg', alt: 'Промо-зображення Pokerbet з кубком і монетами', caption: 'Перевірка перед фінальними діями' },
+    ]} />
     <InfoTable caption="Документи для верифікації Pokerbet" headers={['Документ', 'Що підтверджує', 'Коли може знадобитися']} rows={docsRows} />
     <p>При запиті на суму понад 1 000 EUR або під час додаткової ідентифікації Pokerbet може попросити фото документа, що посвідчує особу, документ на адресу та фото банківської картки, якщо вона використовувалася для депозиту.</p>
   </section>
@@ -109,6 +118,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Верифік
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Відмова</p><h2>Чому не пройшла перевірка документів Pokerbet</h2></div>
     <p>Якщо документ відхилено, спочатку потрібно подивитися повідомлення в акаунті або лист від Pokerbet. Сам факт відмови ще не означає, що проблема саме в документі: оператор міг запросити інший тип підтвердження або додаткову інформацію.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/verification/verification-2.jpg', alt: 'Промо Pokerbet з користувачем і формою входу', caption: 'Перевірка акаунта перед доступом' },
+      { src: '/assets/docs/verification/verification-7.jpg', alt: 'Зображення Pokerbet із захищеним кубком', caption: 'Безпека даних і документів' },
+    ]} />
     <InfoTable caption="Причини відхилення документів Pokerbet" headers={['Проблема', 'Що перевірити', 'Що робити']} rows={rejectRows} />
     <p>Не варто самостійно змінювати фотографії документів, редагувати дані або закривати частину інформації, яку Pokerbet прямо просить показати. Це може лише ускладнити перевірку.</p>
   </section>

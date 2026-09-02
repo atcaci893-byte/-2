@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
@@ -45,6 +46,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Бонуси',
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Актуальні бонуси Pokerbet 2026</p><h2>Welcome Pack, VIP-бонус і місії</h2></div>
     <p>Вейджер залежить від депозиту та способу оплати: для грошових криптобонусів заявлено x15, для грошового бонусу за другий депозит - x10, для інших грошових бонусів і фріспінів - x35. На відіграш грошового бонусу дається 48 годин.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/bonus/bonus-1.jpg', alt: 'Банер Pokerbet з бонусом до 150 000 грн і 650 фріспінів', caption: 'Вітальна пропозиція казино' },
+      { src: '/assets/docs/bonus/bonus-3.jpg', alt: 'Промо-зображення Pokerbet Casino із золотими фішками', caption: 'Казино-бонуси Pokerbet' },
+    ]} />
     <InfoTable caption="Актуальні бонуси Pokerbet" headers={['Бонус', 'Сума', 'Фріспіни', 'Мін. депозит', 'Вейджер', 'Для кого']} rows={activeBonuses} />
   </section>
 
@@ -54,6 +59,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Бонуси',
     <InfoTable caption="Розподіл вітального бонусу Pokerbet" headers={['Депозит', 'Сума', 'Макс. бонус', 'Фріспіни', 'Криптовалюта', 'Макс. криптобонус']} rows={depositRows} />
     <p>Для другого, третього та четвертого депозитів розмір винагороди за поповнення звичайними методами залежить від внесеної суми. Для криптовалютних поповнень діє окрема сітка, а за умовами акції такі грошові криптобонуси мають вейджер x15.</p>
     <p>Гравець також може комбінувати способи оплати між поповненнями. Максимальна сума, яка може залишитися після відіграшу бонусної винагороди, обмежена x3 від початкової суми бонусу.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/bonus/bonus-2.jpg', alt: 'Інтерфейс Pokerbet із каруселлю казино-бонусів', caption: 'Бонусний блок в інтерфейсі' },
+      { src: '/assets/docs/bonus/bonus-4.jpg', alt: 'Каса Pokerbet з активними бонусними картками', caption: 'Бонуси перед депозитом' },
+    ]} />
   </section>
 
   <section class="section">

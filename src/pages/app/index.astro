@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import AppShowcase from '../../components/AppShowcase.astro';
 import FAQ from '../../components/FAQ.astro';
@@ -41,6 +42,11 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Додаток
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Основна інформація</p><h2>Додаток Pokerbet у 2026 році</h2></div>
     <p>Pokerbet окремо описує Android-клієнт і веб-версію для iOS. На сторінці завантаження Android вказані мінімальні вимоги: Android 7.0 або новіша версія, 150 МБ вільного місця та доступ до інтернету через 4G/LTE або Wi-Fi.</p>
+    <DocImageGrid columns="three" images={[
+      { src: '/assets/docs/app/app-1.png', alt: 'Мобільний екран Pokerbet з формою входу', caption: 'Мобільний вхід', tall: true },
+      { src: '/assets/docs/app/app-4.png', alt: 'Мобільний банер Pokerbet із бонусом до 150 000 грн і 650 FS', caption: 'Промо на смартфоні', tall: true },
+      { src: '/assets/docs/app/app-7.png', alt: 'Мобільний екран Pokerbet із казино-розділом', caption: 'Казино в мобільній версії', tall: true },
+    ]} />
     <InfoTable caption="Порівняння мобільного доступу Pokerbet" headers={['Параметр', 'Android', 'iOS']} rows={appPlatforms.map((item) => [item.parameter, item.android, item.ios])} />
   </section>
 
@@ -65,6 +71,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Додаток
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Вибір формату</p><h2>Pokerbet додаток чи мобільний сайт</h2></div>
     <p>Різниця між двома варіантами найбільш помітна на Android. Тут можна або встановити APK, або залишитися в браузері. На iOS окремого застосунку немає, тому питання зводиться до використання веб-версії.</p>
+    <DocImageGrid images={[
+      { src: '/assets/docs/app/app-8.png', alt: 'Десктопний інтерфейс Pokerbet з казино-банером', caption: 'Вебверсія Pokerbet' },
+      { src: '/assets/docs/app/app-9.png', alt: 'Користувач тримає смартфон з відкритою формою Pokerbet', caption: 'Мобільний доступ без окремого акаунта' },
+    ]} />
     <InfoTable caption="Додаток Pokerbet і мобільна версія" headers={['Параметр', 'Додаток Pokerbet для Android', 'Мобільна версія Pokerbet']} rows={compareRows} />
   </section>
 

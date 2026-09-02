@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import DocImageGrid from '../../components/DocImageGrid.astro';
 import InfoTable from '../../components/InfoTable.astro';
 import FAQ from '../../components/FAQ.astro';
 import { faqSchema } from '../../lib/schema';
@@ -36,6 +37,14 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Промоко
   <Hero eyebrow="Промокод" title="Промокод Pokerbet 2026: актуальний код та як його активувати" description="Станом на 27 серпня 2026 року підтвердженого бонус-коду, який можна було б назвати актуальним за даними самого Pokerbet, знайти не вдалося." secondaryLabel="Дивитися бонусні умови" secondaryHref="/bonus/" />
 
   <aside class="promo-code-panel"><span>Промокод Pokerbet</span><strong>Код не підтверджено</strong><p>Сторонні сайти публікують різні коди, зокрема JBVIP, 1DEP та 1DEPFS, але ми не називаємо жоден із них 100% робочим без перевірки безпосередньо у формі реєстрації.</p></aside>
+
+  <section class="section">
+    <div class="section-heading"><p class="eyebrow">Скриншоти</p><h2>Як виглядає промо-блок</h2></div>
+    <DocImageGrid images={[
+      { src: '/assets/docs/promokod/promokod-4.png', alt: 'Банер Pokerbet про промокод 2026 і поле введення коду', caption: 'Промокод у матеріалах Pokerbet' },
+      { src: '/assets/docs/promokod/promokod-2.png', alt: 'Промо-банер Pokerbet з бонусом до 150 000 грн і 650 FS', caption: 'Вітальна пропозиція поруч із формою' },
+    ]} />
+  </section>
 
   <section class="section">
     <div class="section-heading"><p class="eyebrow">Фактчек</p><h2>Актуальний промокод Pokerbet 2026</h2></div>
@@ -78,6 +87,10 @@ const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Промоко
       <li>не виконані умови акції, наприклад мінімальний депозит;</li>
       <li>умови пропозиції змінилися.</li>
     </ul>
+    <DocImageGrid images={[
+      { src: '/assets/docs/promokod/promokod-1.png', alt: 'Екран Pokerbet з повідомленням про бонус або промокод', caption: 'Приклад повідомлення в інтерфейсі' },
+      { src: '/assets/docs/promokod/promokod-3.png', alt: 'Карусель промо-блоків Pokerbet у кабінеті', caption: 'Де перевіряти актуальні пропозиції' },
+    ]} />
     <p>Якщо код не приймається, не варто повторювати реєстрацію з кількома акаунтами. Краще перевірити умови поточної акції та звернутися до підтримки Pokerbet.</p>
   </section>
 
