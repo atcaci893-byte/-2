@@ -7,6 +7,7 @@ interface Props {
   noindex?: boolean;
   schemas?: Record<string, unknown>[];
   type?: 'website' | 'article';
+  siteName?: string;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   noindex = false,
   schemas = [],
   type = 'website',
+  siteName = 'Pokerbet Guide',
 } = Astro.props;
 const imageUrl = image ? new URL(image, canonical).href : undefined;
 ---
@@ -27,7 +29,7 @@ const imageUrl = image ? new URL(image, canonical).href : undefined;
 <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 <meta property="og:type" content={type} />
 <meta property="og:locale" content="uk_UA" />
-<meta property="og:site_name" content="Pokerbet Guide" />
+<meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
@@ -37,4 +39,3 @@ const imageUrl = image ? new URL(image, canonical).href : undefined;
 <meta name="twitter:description" content={description} />
 {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
-

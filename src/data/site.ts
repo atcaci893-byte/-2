@@ -35,5 +35,4 @@ export const trustNavigation = [
   { label: 'Відповідальна гра', href: '/responsible-gambling/', enabled: true },
   { label: 'Політика конфіденційності', href: '/privacy/', enabled: false },
   { label: 'Умови використання', href: '/terms/', enabled: false },
-  { label: 'Контакти', href: '/contacts/', enabled: false },
 ];

@@ -1,19 +1,83 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
-import FAQ from '../../components/FAQ.astro';
-import { faqSchema } from '../../lib/schema';
-const faq = [
-  { question: 'Який канал підтримки доступний?', answer: 'Підтверджені контактні дані ще не внесені. Перевірте розділ допомоги в акаунті; live chat та email будуть додані після перевірки.' },
-  { question: 'Що підготувати перед зверненням?', answer: 'Опишіть проблему, час події, пристрій, текст помилки та ID операції. Не надсилайте пароль або повні дані картки.' },
-  { question: 'Як подати скаргу?', answer: 'Спочатку зафіксуйте звернення в офіційному каналі та збережіть номер заявки. Порядок ескалації буде додано після підтвердження.' },
-];
+
+const email = 'support@pokerbet-play.com.ua';
+const title = 'Контакти та підтримка | Pokerbet Play';
+const description = "Зв'яжіться з командою pokerbet-play.com.ua: питання щодо матеріалів сайту, повідомлення про неточності та технічні проблеми.";
+const canonicalUrl = 'https://pokerbet-play.com.ua/support/';
 const crumbs = [{ label: 'Головна', href: '/' }, { label: 'Підтримка', href: '/support/' }];
 ---
-<BaseLayout title="Підтримка Pokerbet — канали зв’язку та підготовка звернення" description="Як звернутися до підтримки Pokerbet: канали зв’язку, дані для заявки, типові проблеми та порядок подання скарги." breadcrumbs={crumbs} schemas={[faqSchema(faq)]}>
-  <Hero eyebrow="Підтримка" title="Добре підготовлена заявка вирішується швидше" description="Підтверджені години, live chat та email будуть внесені централізовано. Поки що сторінка не публікує неперевірені контакти." />
-  <section class="section"><div class="section-heading"><p class="eyebrow">Перед зверненням</p><h2>Підготуйте контекст</h2></div><div class="card-grid"><article class="info-card"><span class="number">01</span><h3>Опис</h3><p>Що сталося, на якому кроці та який результат ви очікували.</p></article><article class="info-card"><span class="number">02</span><h3>Час і пристрій</h3><p>Дата, приблизний час, браузер або модель пристрою.</p></article><article class="info-card"><span class="number">03</span><h3>Ідентифікатор</h3><p>ID платежу чи заявки без пароля та повних реквізитів картки.</p></article></div></section>
-  <p class="notice"><strong>Канали:</strong> live chat, email і години роботи — уточнюються та будуть додані лише після перевірки.</p>
-  <FAQ items={faq} />
-</BaseLayout>
 
+<BaseLayout {title} {description} {canonicalUrl} breadcrumbs={crumbs} siteName="Pokerbet Play">
+  <div class="contact-page" aria-labelledby="contact-title">
+    <header class="contact-header">
+      <p class="eyebrow">Контакти</p>
+      <h1 id="contact-title">Зв'язатися з нами</h1>
+      <p>Якщо у вас є запитання щодо матеріалів на pokerbet-play.com.ua, ви знайшли неточність або хочете повідомити про технічну проблему на сайті, зв'яжіться з нами.</p>
+    </header>
+
+    <section class="contact-card" aria-labelledby="contact-email-title">
+      <h2 id="contact-email-title">Email</h2>
+      <a class="contact-email" href={`mailto:${email}`}>{email}</a>
+      <p>Ми використовуємо цю адресу для запитань щодо роботи сайту, виправлення інформації та інших звернень від користувачів.</p>
+    </section>
+
+    <section class="contact-card" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Форма зворотного зв'язку</h2>
+      <form class="contact-form" id="support-form" action={`mailto:${email}`} method="post" enctype="text/plain">
+        <label>
+          <span>Ім'я</span>
+          <input type="text" name="name" autocomplete="name" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Тема</span>
+          <select name="topic">
+            <option>Питання щодо сайту</option>
+            <option>Неточність у матеріалі</option>
+            <option>Технічна проблема</option>
+            <option>Інше</option>
+          </select>
+        </label>
+        <label>
+          <span>Повідомлення</span>
+          <textarea name="message" rows="7" required></textarea>
+        </label>
+        <button class="button" type="submit">Надіслати</button>
+      </form>
+    </section>
+
+    <aside class="contact-disclaimer" aria-label="Важлива інформація">
+      <p>pokerbet-play.com.ua не є офіційною службою підтримки Pokerbet. Ми не маємо доступу до ігрових акаунтів, платежів, верифікації або бонусного балансу користувачів. З таких питань потрібно звертатися безпосередньо до підтримки оператора.</p>
+      <small>Не надсилайте через форму паролі, CVV-коди, повні реквізити банківських карток, копії документів або інші конфіденційні дані.</small>
+    </aside>
+  </div>
+
+  <script is:inline>
+    const supportForm = document.getElementById('support-form');
+    supportForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!supportForm.reportValidity()) return;
+
+      const formData = new FormData(supportForm);
+      const name = String(formData.get('name') || '').trim();
+      const replyEmail = String(formData.get('email') || '').trim();
+      const topic = String(formData.get('topic') || 'Питання щодо сайту').trim();
+      const message = String(formData.get('message') || '').trim();
+      const body = [
+        name ? `Ім'я: ${name}` : '',
+        replyEmail ? `Email: ${replyEmail}` : '',
+        '',
+        'Повідомлення:',
+        message,
+      ].filter((line, index, lines) => line || lines[index - 1]).join('\n');
+
+      const mailto = `mailto:support@pokerbet-play.com.ua?subject=${encodeURIComponent(topic)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  </script>
+</BaseLayout>

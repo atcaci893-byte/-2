@@ -217,6 +217,27 @@ p { text-wrap: pretty; }
 .support-banner > div { max-width: 720px; }
 .support-banner h2 { margin-bottom: 14px; }
 .support-banner p:last-child { margin: 0; color: var(--color-muted); }
+.contact-page { max-width: 780px; margin-inline: auto; padding: clamp(32px, 6vw, 72px) 0 var(--section-space); }
+.contact-header { margin-bottom: 30px; }
+.contact-header h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+.contact-header p { margin: 20px 0 0; color: var(--color-muted); font-size: 1.06rem; }
+.contact-card { margin-top: 18px; padding: clamp(24px, 4vw, 34px); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+.contact-card h2 { margin-bottom: 18px; font-size: clamp(1.45rem, 3vw, 2rem); }
+.contact-card p { margin: 16px 0 0; color: var(--color-muted); font-size: .94rem; }
+.contact-email { display: inline-block; color: var(--color-ink); font-size: clamp(1.3rem, 4vw, 2rem); font-weight: 850; letter-spacing: -.04em; overflow-wrap: anywhere; text-decoration-color: var(--color-accent); text-decoration-thickness: .14em; }
+.contact-form { display: grid; gap: 16px; }
+.contact-form label { display: grid; gap: 8px; color: var(--color-muted); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea { width: 100%; padding: 13px 14px; color: var(--color-ink); background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-xs); font-size: 1rem; font-weight: 500; letter-spacing: normal; text-transform: none; }
+.contact-form textarea { resize: vertical; min-height: 150px; }
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus { border-color: #a5a600; outline: 3px solid rgba(244,245,30,.35); }
+.contact-form .button { width: max-content; min-width: 160px; margin-top: 4px; border: 0; cursor: pointer; }
+.contact-disclaimer { margin-top: 18px; padding: clamp(22px, 4vw, 30px); background: var(--color-neutral); border: 1px solid var(--color-line); border-left: 5px solid var(--color-accent); border-radius: var(--radius-md); }
+.contact-disclaimer p { margin: 0 0 12px; color: var(--color-ink-soft); font-size: .96rem; }
+.contact-disclaimer small { display: block; color: var(--color-muted); font-size: .78rem; line-height: 1.6; }
 
 /* Generic content cards */
 .card-grid { display: grid; gap: 14px; }

@@ -18,9 +18,12 @@ interface Props {
   type?: 'website' | 'article';
   hideHeaderCta?: boolean;
   image?: string;
+  canonicalUrl?: string | URL;
+  siteName?: string;
 }
-const { title, description, breadcrumbs = [], schemas = [], noindex = false, type = 'website', hideHeaderCta = false, image = '/assets/social/og.png' } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description, breadcrumbs = [], schemas = [], noindex = false, type = 'website', hideHeaderCta = false, image = '/assets/social/og.png', canonicalUrl, siteName = siteConfig.name } = Astro.props;
+const canonical = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.url.pathname, Astro.site);
+const siteUrl = new URL('/', canonical).href;
 const baseSchemas: Record<string, unknown>[] = [
   {
     '@context': 'https://schema.org',
@@ -29,13 +32,13 @@ const baseSchemas: Record<string, unknown>[] = [
     description,
     url: canonical.href,
     inLanguage: siteConfig.language,
-    isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: Astro.site?.href },
+    isPartOf: { '@type': 'WebSite', name: siteName, url: siteUrl },
   },
 ];
 if (Astro.url.pathname === '/') {
-  baseSchemas.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.name, url: Astro.site?.href, inLanguage: siteConfig.language });
+  baseSchemas.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: siteName, url: siteUrl, inLanguage: siteConfig.language });
 }
-if (breadcrumbs.length > 1) baseSchemas.push(breadcrumbSchema(breadcrumbs, Astro.site!.href));
+if (breadcrumbs.length > 1) baseSchemas.push(breadcrumbSchema(breadcrumbs, siteUrl));
 ---
 
 <!doctype html>
@@ -46,7 +49,7 @@ if (breadcrumbs.length > 1) baseSchemas.push(breadcrumbSchema(breadcrumbs, Astro
     <meta name="theme-color" content="#141410" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="sitemap" href="/sitemap.xml" />
-    <SeoHead {title} {description} {canonical} {noindex} schemas={[...baseSchemas, ...schemas]} {type} {image} />
+    <SeoHead {title} {description} {canonical} {noindex} schemas={[...baseSchemas, ...schemas]} {type} {image} {siteName} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Перейти до вмісту</a>
