@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-const FALLBACK_SITE_URL = 'https://pokerbet-2.vercel.app';
+const FALLBACK_SITE_URL = 'https://pokerbet-play.com.ua';
 
 function normalizeSiteUrl(value) {
   if (typeof value !== 'string' || value.trim() === '') return undefined;

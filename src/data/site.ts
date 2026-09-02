@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: 'Pokerbet Guide',
-  shortName: 'PB Guide',
+  name: 'Pokerbet Play',
+  shortName: 'Pokerbet Play',
   locale: 'uk_UA',
   language: 'uk',
   cta: {
