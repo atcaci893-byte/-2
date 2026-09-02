@@ -5,7 +5,7 @@ export const siteConfig = {
   language: 'uk',
   cta: {
     label: 'Реєстрація',
-    href: '/registration/',
+    href: '/startgame/',
   },
   disclaimer:
     'Незалежний інформаційний ресурс. Сайт не є офіційним сайтом оператора Pokerbet і не приймає ставки чи платежі.',

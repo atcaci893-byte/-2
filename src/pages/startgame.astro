@@ -1,0 +1,18 @@
+---
+const destination = 'https://trackmyaff.com/?serial=61335727&creative_id=3262&anid={clickid}_{Art2}';
+---
+
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <title>Перехід на Pokerbet</title>
+    <script is:inline set:html={`window.location.replace(${JSON.stringify(destination)});`} />
+  </head>
+  <body>
+    <p>Зараз перенаправимо вас на сайт. Якщо перехід не спрацював, <a href={destination} rel="nofollow sponsored">натисніть тут</a>.</p>
+  </body>
+</html>

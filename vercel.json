@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/startgame",
+      "destination": "https://trackmyaff.com/?serial=61335727&creative_id=3262&anid={clickid}_{Art2}",
+      "statusCode": 302
+    },
+    {
+      "source": "/startgame/",
+      "destination": "https://trackmyaff.com/?serial=61335727&creative_id=3262&anid={clickid}_{Art2}",
+      "statusCode": 302
+    }
+  ]
+}
