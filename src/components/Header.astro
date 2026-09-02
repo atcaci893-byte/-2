@@ -20,14 +20,14 @@ const { hideCta = false } = Astro.props;
       </details>
     </nav>
     <span class="header-age">21+</span>
-    {!hideCta && <a class="button button-small header-cta" href={siteConfig.cta.href}>{siteConfig.cta.label}</a>}
+    {!hideCta && <a class="button button-small header-cta" href={siteConfig.cta.href} rel={siteConfig.cta.href === '/startgame/' ? 'nofollow sponsored' : undefined}>{siteConfig.cta.label}</a>}
     <details class="mobile-menu">
       <summary aria-label="Відкрити меню"><span></span><span></span></summary>
       <div class="mobile-drawer">
         <div class="drawer-label">Навігація</div>
         <nav aria-label="Мобільна навігація">{primaryNavigation.map((item, index) => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}><span>0{index + 1}</span>{item.label}</a>)}</nav>
         <nav class="drawer-trust" aria-label="Правова інформація">{trustNavigation.filter((item) => item.enabled).map((item) => <a href={item.href}>{item.label}</a>)}</nav>
-        {!hideCta && <a class="button drawer-cta" href={siteConfig.cta.href}>{siteConfig.cta.label}</a>}
+        {!hideCta && <a class="button drawer-cta" href={siteConfig.cta.href} rel={siteConfig.cta.href === '/startgame/' ? 'nofollow sponsored' : undefined}>{siteConfig.cta.label}</a>}
       </div>
     </details>
   </div>

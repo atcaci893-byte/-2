@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const staticRoutes = [
   '/', '/bonus/', '/promokod/', '/registration/', '/app/', '/payments/',
-  '/verification/', '/support/', '/security/', '/responsible-gambling/', '/news/',
+  '/verification/', '/support/', '/security/', '/responsible-gambling/', '/privacy/', '/terms/', '/news/',
 ];
 
 export const GET: APIRoute = async ({ site }) => {
@@ -17,4 +17,3 @@ export const GET: APIRoute = async ({ site }) => {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },
   });
 };
-

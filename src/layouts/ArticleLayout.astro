@@ -11,7 +11,7 @@ interface Props {
   image: string;
 }
 const { title, description, category, publishedAt, updatedAt, slug, image } = Astro.props;
-const pageTitle = Astro.props.seoTitle ?? `${title} — Pokerbet Guide`;
+const pageTitle = Astro.props.seoTitle ?? `${title} — Pokerbet Play`;
 const url = new URL(`/news/${slug}/`, Astro.site).href;
 const schema = {
   '@context': 'https://schema.org',

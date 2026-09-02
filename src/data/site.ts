@@ -33,6 +33,6 @@ export const moreNavigation = [
 export const trustNavigation = [
   { label: 'Безпека', href: '/security/', enabled: true },
   { label: 'Відповідальна гра', href: '/responsible-gambling/', enabled: true },
-  { label: 'Політика конфіденційності', href: '/privacy/', enabled: false },
-  { label: 'Умови використання', href: '/terms/', enabled: false },
+  { label: 'Політика конфіденційності', href: '/privacy/', enabled: true },
+  { label: 'Умови використання', href: '/terms/', enabled: true },
 ];

@@ -8,7 +8,7 @@ const links = [
   { label: 'Новини', href: '/news/' },
 ];
 ---
-<BaseLayout title="Сторінку не знайдено — Pokerbet Guide" description="Запитаної сторінки немає. Перейдіть на головну або відкрийте один з основних розділів." noindex>
+<BaseLayout title="Сторінку не знайдено — Pokerbet Play" description="Запитаної сторінки немає. Перейдіть на головну або відкрийте один з основних розділів." noindex>
   <Hero eyebrow="Помилка 404" title="Ця сторінка зникла зі столу" description="Можливо, адреса змінилася або в ній є помилка. Поверніться на головну чи оберіть потрібний розділ." primaryLabel="На головну" primaryHref="/" />
   <section class="section"><div class="section-heading"><p class="eyebrow">Основні розділи</p><h2>Куди перейти далі</h2></div><div class="card-grid">{links.map((item, index) => <article class="info-card"><span class="number">0{index + 1}</span><h3><a href={item.href}>{item.label}</a></h3></article>)}</div></section>
 </BaseLayout>

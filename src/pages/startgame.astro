@@ -13,6 +13,10 @@ const destination = 'https://trackmyaff.com/?serial=61335727&creative_id=3262&an
     <script is:inline set:html={`window.location.replace(${JSON.stringify(destination)});`} />
   </head>
   <body>
-    <p>Зараз перенаправимо вас на сайт. Якщо перехід не спрацював, <a href={destination} rel="nofollow sponsored">натисніть тут</a>.</p>
+    <main>
+      <h1>Перехід на сайт оператора</h1>
+      <p>Зараз перенаправимо вас на зовнішній сайт. Якщо перехід не спрацював автоматично, скористайтеся посиланням нижче.</p>
+      <p><a href={destination} rel="nofollow sponsored">Перейти вручну</a></p>
+    </main>
   </body>
 </html>

@@ -5,6 +5,5 @@ const { title, text, label, href, quiet = false } = Astro.props;
 
 <aside class:list={['cta-panel', { 'cta-quiet': quiet }]}>
   <div><p class="eyebrow">Наступний крок</p><h2>{title}</h2><p>{text}</p></div>
-  <a class="button" href={href}>{label}</a>
+  <a class="button" href={href} rel={href === '/startgame/' ? 'nofollow sponsored' : undefined}>{label}</a>
 </aside>
-

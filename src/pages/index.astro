@@ -34,7 +34,7 @@ const overviewRows = [
   ['Мінімальна сума виведення', 'залежить від платіжного методу'],
   ['Мобільний доступ', 'браузер, Android APK та вебверсія для iOS'],
   ['Верифікація', 'потрібна для виведення коштів'],
-  ['Служба підтримки', 'чат, Telegram, email'],
+  ['Підтримка', 'через канали, доступні в акаунті оператора'],
   ['Мінімальний дозволений вік для гри', '21, згідно законодавства України'],
   ['Дата перевірки', '27 серпня 2026 року'],
 ];
@@ -72,7 +72,7 @@ const posts = (await getCollection('news', ({ data }) => !data.draft)).sort((a, 
     <div class="bonus-kicker">Актуальна пропозиція / перевірка даних</div>
     <div class="bonus-display"><div><p>Вітальний бонус</p><strong>{bonusData.welcomeAmount}</strong></div><div><p>Фриспіни</p><strong>{bonusData.freeSpins}</strong></div></div>
     <div class="bonus-details"><span><small>Мін. депозит</small>{bonusData.minimumDeposit}</span><span><small>Вейджер</small>{bonusData.wagering}</span><span><small>Термін</small>{bonusData.validity}</span></div>
-    <div class="bonus-feature-footer"><h2 id="bonus-feature-title">Жодних цифр без підтвердження</h2><a class="button" href="/startgame/">Умови бонусу <span aria-hidden="true">→</span></a></div>
+    <div class="bonus-feature-footer"><h2 id="bonus-feature-title">Жодних цифр без підтвердження</h2><a class="button" href="/startgame/" rel="nofollow sponsored">Умови бонусу <span aria-hidden="true">→</span></a></div>
   </section>
 
   <section class="section start-section" aria-labelledby="start-title"><div class="section-heading"><p class="eyebrow">Як почати</p><h2 id="start-title">Чотири контрольні точки</h2></div><a class="start-timeline" href="/registration/" aria-label="Відкрити повну інструкцію з реєстрації">{startSteps.map(([number, title, text]) => <div><span>{number}</span><i aria-hidden="true"></i><strong>{title}</strong><p>{text}</p></div>)}</a></section>
